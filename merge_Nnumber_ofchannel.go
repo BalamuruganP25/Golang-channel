@@ -9,11 +9,11 @@ import(
 
 func main(){
 
-	channalone   := aschan(1,2,3,4,5,6,7,8,9)
-    channaltwo   := aschan(10,11,12,13,14,15,16,17,18,19)
-    channalthree := aschan(20,21,22,23,24,25,26,27,28,29)
+    channalone   := insert_data_to_channel(1,2,3,4,5,6,7,8,9)
+    channaltwo   := insert_data_to_channel(10,11,12,13,14,15,16,17,18,19)
+    channalthree := insert_data_to_channel(20,21,22,23,24,25,26,27,28,29)
 
-    for v:= range merge(a,b,c){
+    for v:= range merge(channalone,channaltwo,channalthree){
 
     	fmt.Println(v)
 
@@ -21,7 +21,7 @@ func main(){
  
 }
 
-
+// merge the channel
 func merge(chans ... <-chan int) <-chan int{
 
   out := make(chan int) 
@@ -50,8 +50,8 @@ return out
 
 }
 
-
-func aschan(vs ...int) <-chan int{
+//insert the value in chennal
+func insert_data_to_channel(vs ...int) <-chan int{
 	c:= make(chan int)
 	go func(){
    		for _,v := range vs{
